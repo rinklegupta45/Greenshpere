@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
+import logo from '../assets/logo.svg';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -32,8 +33,8 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-green-100 px-4">
       <div className="card w-full max-w-md p-8">
         <div className="text-center mb-8">
-          <span className="text-4xl">🌍</span>
-          <h1 className="font-display font-bold text-2xl text-green-800 mt-2">GreenSphere</h1>
+          <img src={logo} alt="GreenSphere Logo" className="w-12 h-12 mx-auto rounded-xl drop-shadow-sm" />
+          <h1 className="font-display font-bold text-3xl text-green-800 mt-3">GreenSphere</h1>
           <p className="text-gray-600 text-sm">Create your account</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
