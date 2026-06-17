@@ -34,7 +34,15 @@ export default function Profile() {
     try {
       const { data } = await api.put(`/users/follow/${profile._id}`);
       setFollowing(data.following);
-      setProfile((p) => (p ? { ...p, followers: data.following ? p.followers.length + 1 : p.followers.length - 1 } : null));
+      setProfile((p) => {
+        if (!p) return null;
+        const currentUserId = currentUser?.id || currentUser?._id;
+        const followersList = p.followers || [];
+        const followers = data.following
+          ? (followersList.includes(currentUserId) ? followersList : [...followersList, currentUserId])
+          : followersList.filter((id) => id !== currentUserId);
+        return { ...p, followers };
+      });
     } finally {
       setFollowLoading(false);
     }
